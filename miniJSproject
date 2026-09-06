@@ -1,0 +1,63 @@
+let students = [
+    { id: 101, name: "Alice", department: "Computer Science", gpa: 3.8 },
+    { id: 102, name: "Bob", department: "Mathematics", gpa: 3.5 },
+    { id: 103, name: "Charlie", department: "Physics", gpa: 3.9 }
+];
+
+function addStudent(name, department, gpa) {
+    let newId = students.length > 0 ? students[students.length - 1].id + 1 : 101;
+
+    let newStudent = { id: newId, name: name, department: department, gpa: gpa };
+
+    students.push(newStudent);
+    console.log(`Student ${name} added successfully!`);
+}
+
+addStudent("Frank", "Chemistry", 3.7);
+
+function getAll() {
+    for (const student of students) {
+        console.log(student);
+    }
+}
+
+getAll();
+
+function findStudentById(id) {
+    let foundStudent = null;
+
+    for (let student of students) {
+        if (student.id == id) {
+            foundStudent = student;
+            break;
+        }
+    }
+
+    if (foundStudent) {
+        console.log("Student found: ", foundStudent);
+    } else {
+        console.log("Student not found with ID: ", id);
+    }
+}
+
+findStudentById(102);
+
+function deleteStudentbyId(id) {
+    let deletedStudent = -1;
+
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id == id) {
+            deletedStudent = i;
+            break;
+        }
+    }
+    if (deletedStudent !== -1) {
+        let deletedStd = students.splice(deletedStudent, 1);
+        console.log(`Deleted ${deletedStd[0].name} id: ${deletedStudent}`);
+    }else {
+        console.log("Student not found with ID: ", id); 
+    }
+    }
+
+    deleteStudentbyId(101);
+    getAll();
